@@ -1,0 +1,7 @@
+export const SET_DATA = "SET_DATA";
+export const SET_DATE_SOB = "SET_DATE_SOB";
+export const SET_DETAILS = "SET_DETAILS";
+export const GET_RFQ_DETAILS = "GET_RFQ_DETAILS";
+export const GET_SUPPLIER_LIST = "GET_SUPPLIER_LIST";
+export const GET_SUPPLIER_LIST_BYITEM = "GET_SUPPLIER_LIST_BYITEM";
+export const SET_NEW_SUPPLIER = "SET_NEW_SUPPLIER";

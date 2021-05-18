@@ -1,24 +1,54 @@
 import logo from './logo.svg';
 import './App.css';
-
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Navigation from "./Screens/Header/Navigation";
+import store from "./Services/Store";
+import { Provider } from "react-redux";
+import Login from "./Components/Containers/LoginCtnr";
+import Maintable from "./Screens/Body/MainTable";
+import GoodsRequest from "./Screens/GoodsRequest/GoodsRequest";
+import Dashboard from "./Screens/Dashboard/Dashboard";
+import ManageNotification from "./Screens/Notification/ManageNotification";
+import "./../src/CustomStyles/PRSelectedInfo.css";
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { Container } from '@material-ui/core';
+const theme = createMuiTheme({
+  typography: {
+    fontFamily:   'Cambria'
+   
+  },});
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  
+  const LoginContainer = () => (
+    <div>
+      <Provider store={store}>
+        <Route path="/Login" component={Login} />
+      </Provider>
     </div>
+  );
+  const DefaultContainer = () => (
+    <Container fixed >
+      <Provider store={store}>
+        <Navigation />
+
+        <Route path="/Maintable" component={Maintable}/>
+        <Route path="/GoodsRequest" component={GoodsRequest}/>
+        <Route path="/Dashboard" component={Dashboard}/>
+        <Route path="/Notification" component={ManageNotification}/>
+      </Provider>
+    </Container>
+  );
+  return (
+    <ThemeProvider theme={theme}>
+   <div>
+        <BrowserRouter>
+      <Switch>
+          <Route exact path="/(login)" component={LoginContainer} />
+          <Route component={DefaultContainer} />
+        </Switch>
+      </BrowserRouter>
+   </div>
+   </ThemeProvider>
   );
 }
 

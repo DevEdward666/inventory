@@ -5,8 +5,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: auto;
 }
-
+@font-face {
+  font-family: "Cambria";
+  src: local("Cambria"),
+    url("./Assets/fonts/Cambria.ttf") format("truetype");
+  font-weight: normal;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
