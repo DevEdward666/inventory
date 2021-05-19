@@ -36,7 +36,7 @@ function Login() {
   const handleSubmit = useCallback(async (data, { resetForm }) => {
     window.localStorage.setItem("username", data.username);
     dispatch(action_Login_user(data.username, data.password));
-  }, []);
+  }, [dispatch]);
   useEffect(() => {
     dispatch(action_GET_defaultname());
     dispatch(action_GET_defaultlogo());

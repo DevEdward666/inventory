@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(2),
     },
     buttonstyle:{
+      display:"flex",
       padding:20,
     },
     table: {

@@ -219,12 +219,16 @@ console.log(openFilter)
       }/>
         <div className={classes.rootcard}>
         <Paper className={classes.buttonstyle}>
-        <Button variant="contained" color="primary" onClick={()=>handleNewItemClick()}>
+      
+        <Button variant="contained" color="primary" onClick={()=>handleNewItemClick()}  style={{left:"auto"}}>
             Create New Item Request
         </Button>   
-        <Button variant="contained" color="secondary" onClick={()=>handleFilterOpen()}>
+   
+        <Button variant="contained" color="default" onClick={()=>handleFilterOpen()} style={{marginRight:"auto"}}>
             Filter table
         </Button>   
+    
+        
         </Paper>
         <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="custom pagination table">

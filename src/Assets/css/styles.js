@@ -2,7 +2,7 @@ import { Paper } from "@material-ui/core";
 import styled from "styled-components";
 
 export const LoginStyles = styled(Paper)`
-  background-color: #fafafa;
+  background-color: #ffe77d;
   min-height: 100vh;
   min-width: 100vw;
   height: 100%;
@@ -15,14 +15,14 @@ export const LoginStyles = styled(Paper)`
   .login-container {
     align-self: center;
     justify-self: center;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.8);
     z-index: 2;
     width: 400px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.56),
       0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 
-    margin: 1.5em;
-    padding: 0.5em 1.5em;
+    margin: 2.5em;
+    padding: 2.5em 1.5em;
     display: grid;
     align-items: start;
     align-content: start;
@@ -89,7 +89,8 @@ export const LoginStyles = styled(Paper)`
         justify-items: start;
         align-items: center;
         .badge {
-          background-color: ${(p) => p.theme.palette.primary.dark};
+          ${'' /* background-color: ${(p) => p.theme.palette.primary.dark}; */}
+          background-color: #ffe77d;
           padding: 3px;
           border-radius: 5px;
           margin: 0 5px;
@@ -133,7 +134,7 @@ export const LoginStyles = styled(Paper)`
       grid-gap: 0.4em;
       .title {
         justify-self: center;
-        background-color: #fff;
+        background-color: #ffe77d;
         margin-top: -10px;
         font-size: 0.7em;
         text-align: center;
