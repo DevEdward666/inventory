@@ -82,7 +82,8 @@ const GRheader = (props) => {
       if (mounted) {
         if (
           requestinfo?.data.STATUS === "Approved" ||
-          requestinfo?.data.STATUS === "Cancelled"
+          requestinfo?.data.STATUS === "Cancelled" ||
+          requestinfo?.data.STATUS === "Issued"
         ) {
           sethideallactions(true);
 
