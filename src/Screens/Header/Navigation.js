@@ -27,7 +27,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import useSound from "use-sound";
-import ringtone from "../../Assets/ringtone/calling_you.mp3";
 import "../../Plugin/Modal/custommodalcss.css";
 import {
   action_GET_defaultlogo,
@@ -61,7 +60,7 @@ const Navigation = () => {
   const name = useSelector((state) => state.DefaultReducers.name);
   const logo = useSelector((state) => state.DefaultReducers.logo);
   const base_url = useSelector((state) => state.DefaultReducers.base_url);
-  const [play] = useSound(ringtone, { volume: 0.2 });
+
   const hubconnectnotify = useSelector(
     (state) => state.DefaultReducers.hubconnectnotify
   );
@@ -159,7 +158,6 @@ link.href=logo;
     dispatch,
     hubconnectnotify,
     offset,
-    play,
     user_info?.deptcode,
   ]);
   const currenturl = window.location.href;

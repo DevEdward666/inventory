@@ -27,6 +27,7 @@ export const action_GET_defaultname = () => async (dispatch) => {
   await fetch(url, {
     method: "POST",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
   })
@@ -43,6 +44,7 @@ export const action_GET_defaultlogo = () => async (dispatch) => {
   await fetch(url, {
     method: "POST",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
   })
@@ -59,6 +61,7 @@ export const action_GET_getuserinfo = (username) => async (dispatch) => {
   await fetch(url, {
     method: "POST",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -78,6 +81,7 @@ export const action_GET_getUserPermission = (username) => async (dispatch) => {
   await fetch(url, {
     method: "POST",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -98,6 +102,7 @@ export const action_GET_getUserPermission_Cancel =
     await fetch(url, {
       method: "POST",
       headers: {
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({

@@ -34,6 +34,7 @@ export const action_GET_listofrequest_by_status =
       withCredentials: true,
       headers: {
         Authorization: bearer,
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -58,6 +59,7 @@ export const action_GET_listofrequestsearched =
       withCredentials: true,
       headers: {
         Authorization: bearer,
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -81,6 +83,7 @@ export const action_GET_listofrequest = (todept) => async (dispatch) => {
     withCredentials: true,
     headers: {
       Authorization: bearer,
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -102,6 +105,7 @@ export const action_GET_listofdepartment = () => async (dispatch) => {
     withCredentials: true,
     headers: {
       Authorization: bearer,
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
   })
@@ -120,6 +124,7 @@ export const action_GET_listofstockclass = () => async (dispatch) => {
     withCredentials: true,
     headers: {
       Authorization: bearer,
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
   })
@@ -162,6 +167,7 @@ export const action_GET_InsertNewRequest =
       withCredentials: true,
       headers: {
         Authorization: bearer,
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -189,6 +195,7 @@ export const action_GET_getsinglerequestheader =
       withCredentials: true,
       headers: {
         Authorization: bearer,
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -212,6 +219,7 @@ export const action_GET_getsinglerequestdetails =
       withCredentials: true,
       headers: {
         Authorization: bearer,
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -235,6 +243,7 @@ export const action_SET_updaterequestApproved =
       withCredentials: true,
       headers: {
         Authorization: bearer,
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -261,6 +270,7 @@ export const action_SET_updaterequestCancelled =
       withCredentials: true,
       headers: {
         Authorization: bearer,
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -286,6 +296,7 @@ export const action_GET_dashboardnumber = (id) => async (dispatch) => {
     withCredentials: true,
     headers: {
       Authorization: bearer,
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -309,6 +320,7 @@ export const action_set_notification =
       withCredentials: true,
       headers: {
         Authorization: bearer,
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
