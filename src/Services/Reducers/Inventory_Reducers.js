@@ -1,27 +1,58 @@
-import {SET_SEARCH_FOR_TABLE,SET_STATUS_FOR_TABLE,SET_INVENTORY_TABLE_BYSTATUS,GET_DASHBOARD_NUMBERS,SET_REQ_FOOTER,GET_SINGLEREQUEST_HEADER,GET_SINGLEREQUEST_DETAILS,GET_REQUEST_INFO, REQUEST_SUCCESS,SET_INVENTORY_TABLE,GET_INVENTORY_DEPARTMENT,SET_OFFICE,SET_OPEN_MODAL,GET_NON_INVENTORY,SET_SELECTED_ITEM,SET_OPEN_QTYMODAL,SET_REQ_DTLS,SET_REQ_HEADER} from "../Types/Inventory_Types";
+import {
+  SET_SEARCH_TABLE_PER_ITEM,
+  SET_SEARCH_FOR_TABLE,
+  SET_STATUS_FOR_TABLE,
+  SET_INVENTORY_TABLE_BYSTATUS,
+  GET_DASHBOARD_NUMBERS,
+  SET_REQ_FOOTER,
+  GET_SINGLEREQUEST_HEADER,
+  GET_SINGLEREQUEST_DETAILS,
+  GET_REQUEST_INFO,
+  REQUEST_SUCCESS,
+  SET_INVENTORY_TABLE,
+  GET_INVENTORY_DEPARTMENT,
+  SET_OFFICE,
+  SET_OPEN_MODAL,
+  GET_NON_INVENTORY,
+  SET_SELECTED_ITEM,
+  SET_OPEN_QTYMODAL,
+  SET_REQ_DTLS,
+  SET_REQ_HEADER,
+  SET_STOCK_CLASS,
+  SET_SEARCH_FOR_STOCKCLASS,
+} from "../Types/Inventory_Types";
 
 const data = {
-  data: {data:[],loading:false},
-  databydept: {data:[],loading:false},
-  noninventory: {data:[],loading:false},
-  department: {data:[],loading:false},
-  office:"",
-  isOpen:false,
-  QtyOpen:false,
-  selected:[],
-  requesteddtls:[],
-  requestedheader:[],
-  requestfooter:"",
-  requestsuccess:{message:"",loading:false},
-  requestinfo:{data:[],loading:false},
-  singlerequestheader:{data:[],loading:false},
-  singlerequestdetails:{data:[],loading:false},
-  getdashboardnumbers:{data:[],loading:false},
-  status:'',
-  setsearchtable:{status:"",reqdate:"",apprdate:"",open:false},
+  data: { data: [], loading: false },
+  databydept: { data: [], loading: false },
+  noninventory: { data: [], loading: false },
+  department: { data: [], loading: false },
+  office: "",
+  isOpen: false,
+  QtyOpen: false,
+  selected: [],
+  requesteddtls: [],
+  requestedheader: [],
+  requestfooter: "",
+  requestsuccess: { message: "", loading: false },
+  requestinfo: { data: [], loading: false },
+  singlerequestheader: { data: [], loading: false },
+  singlerequestdetails: { data: [], loading: false },
+  getdashboardnumbers: { data: [], loading: false },
+  getstockclass: { data: [], loading: false },
+  status: "",
+  setsearchtable: { status: "", reqdate: "", apprdate: "", open: false },
+  setsearchitem: { search: " " },
+  setstockclasssearched: { classcode: " " },
 };
 const Inventory_Reducers = (data_state = data, actions) => {
   switch (actions.type) {
+    case SET_SEARCH_FOR_STOCKCLASS:
+      return { ...data_state, setstockclasssearched: actions.payload };
+    case SET_SEARCH_TABLE_PER_ITEM:
+      return { ...data_state, setsearchitem: actions.payload };
+    case SET_STOCK_CLASS:
+      return { ...data_state, getstockclass: actions.payload };
     case SET_SEARCH_FOR_TABLE:
       return { ...data_state, setsearchtable: actions.payload };
     case SET_STATUS_FOR_TABLE:

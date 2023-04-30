@@ -81,6 +81,16 @@ const Navigation = () => {
     (state) => state.DefaultReducers.user_permission_cancel
   );
 
+  var link = document.querySelector("link[rel~='icon']");
+  var title = document.querySelector("title[rel~='title']");
+if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    document.getElementsByTagName('head')[0].appendChild(link);
+}
+link.href=logo;
+
+
   const permissions = useSelector((state) => state.DefaultReducers.permissions);
   useEffect(() => {
     let mounted = true;

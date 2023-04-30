@@ -18,6 +18,9 @@ import {
   GET_DASHBOARD_NUMBERS,
   SET_STATUS_FOR_TABLE,
   SET_SEARCH_FOR_TABLE,
+  SET_SEARCH_TABLE_PER_ITEM,
+  SET_STOCK_CLASS,
+  SET_SEARCH_FOR_STOCKCLASS,
 } from "../Types/Inventory_Types";
 
 const auth = window.localStorage.getItem("inventory_token");
@@ -108,11 +111,10 @@ export const action_GET_listofdepartment = () => async (dispatch) => {
         type: GET_INVENTORY_DEPARTMENT,
         payload: { data: res.data, loading: true },
       });
-      console.log(res);
     });
 };
-export const action_GET_noninventoryitem = () => async (dispatch) => {
-  var url = `${process.env.REACT_APP_BASE_URL}api/inventory/getinventoryitem`;
+export const action_GET_listofstockclass = () => async (dispatch) => {
+  var url = `${process.env.REACT_APP_BASE_URL}api/inventory/getstockclass`;
   await fetch(url, {
     method: "POST",
     withCredentials: true,
@@ -124,12 +126,34 @@ export const action_GET_noninventoryitem = () => async (dispatch) => {
     .then((response) => response.json())
     .then((res) => {
       dispatch({
-        type: GET_NON_INVENTORY,
+        type: SET_STOCK_CLASS,
         payload: { data: res.data, loading: true },
       });
-      console.log(res);
     });
 };
+export const action_GET_noninventoryitem =
+  (search, classcode) => async (dispatch) => {
+    var url = `${process.env.REACT_APP_BASE_URL}api/inventory/getinventoryitem`;
+    await fetch(url, {
+      method: "POST",
+      withCredentials: true,
+      headers: {
+        Authorization: bearer,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        search: search,
+        classcode: classcode,
+      }),
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        dispatch({
+          type: GET_NON_INVENTORY,
+          payload: { data: res.data, loading: true },
+        });
+      });
+  };
 export const action_GET_InsertNewRequest =
   (deptcode, reqby, todept, reqremarks, requestdetails) => async (dispatch) => {
     var url = `${process.env.REACT_APP_BASE_URL}api/inventory/InsertNewRequest`;
@@ -303,6 +327,19 @@ export const action_set_notification =
         console.log(res);
       });
   };
+export const action_set_stockclass_search = (code) => async (dispatch) => {
+  dispatch({
+    type: SET_SEARCH_FOR_STOCKCLASS,
+    payload: { classcode: code },
+  });
+};
+
+export const action_set_search_item = (search) => async (dispatch) => {
+  dispatch({
+    type: SET_SEARCH_TABLE_PER_ITEM,
+    payload: { search: search },
+  });
+};
 
 export const action_set_search = (status, date, open) => async (dispatch) => {
   dispatch({
