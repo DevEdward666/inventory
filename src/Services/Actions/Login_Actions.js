@@ -2,26 +2,28 @@ import { SET_DATA } from "../Types/Login_Types";
 
 export const action_Login_user = (username, password) => async () => {
   var url = `${process.env.REACT_APP_BASE_URL}api/user/login`;
-  const fetchdata = await fetch(url, {
+await fetch(url, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: new URLSearchParams({
+    body: JSON.stringify({
       // grant_type: "password",
       username: username,
       password: password,
     }),
-  });
-  const parseData = await fetchdata.json();
-  if (parseData.success !== false) {
-    localStorage.setItem("username", username);
-    localStorage.setItem("inventory_token", parseData.access_token);
-    localStorage.setItem("refreshtoken", parseData.refresh_token);
-    window.location.href = "/";
-    console.log(parseData);
-  } else {
-    alert("Wrong Username/Password");
-  }
+  }).then((response)=>response.json())
+    .then((res)=>{
+      if (res.success !== false && res.status!==400) {
+        localStorage.setItem("username", username);
+        localStorage.setItem("inventory_token", res.access_token);
+        localStorage.setItem("refreshtoken", res.refresh_token);
+        window.location.href = "/";
+        console.log(res);
+      } else {
+        alert("Wrong Username/Password");
+      }
+    })
+ 
 };

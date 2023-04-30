@@ -20,7 +20,7 @@ const auth = window.localStorage.getItem("tokenizer");
 const bearer_token = auth;
 const bearer = "Bearer " + bearer_token;
 export const action_GET_defaultname = () => async (dispatch) => {
-  var url = `${process.env.REACT_APP_BASE_URL}api/company/company-name`;
+  var url = `${process.env.REACT_APP_BASE_URL}api/company/companyname`;
   await fetch(url, {
     method: "POST",
     headers: {
@@ -36,7 +36,7 @@ export const action_GET_defaultname = () => async (dispatch) => {
     });
 };
 export const action_GET_defaultlogo = () => async (dispatch) => {
-  var url = `${process.env.REACT_APP_BASE_URL}api/company/company-logo`;
+  var url = `${process.env.REACT_APP_BASE_URL}api/company/companylogo`;
   await fetch(url, {
     method: "POST",
     headers: {
