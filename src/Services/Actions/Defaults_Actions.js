@@ -14,16 +14,20 @@ import {
   SET_USER_PERMISSION,
   SET_PERMISSIONS,
   SET_USER_PERMISSION_CANCEL,
+  SET_BASE64TO_PDF,
+  SET_BACKDROP_OPEN,
 } from "../Types/Default_Types";
 import * as signalR from "@microsoft/signalr";
 const auth = window.localStorage.getItem("tokenizer");
 const bearer_token = auth;
 const bearer = "Bearer " + bearer_token;
+
 export const action_GET_defaultname = () => async (dispatch) => {
   var url = `${process.env.REACT_APP_BASE_URL}api/company/companyname`;
   await fetch(url, {
     method: "POST",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
   })
@@ -40,6 +44,7 @@ export const action_GET_defaultlogo = () => async (dispatch) => {
   await fetch(url, {
     method: "POST",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
   })
@@ -56,6 +61,7 @@ export const action_GET_getuserinfo = (username) => async (dispatch) => {
   await fetch(url, {
     method: "POST",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -75,6 +81,7 @@ export const action_GET_getUserPermission = (username) => async (dispatch) => {
   await fetch(url, {
     method: "POST",
     headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -95,6 +102,7 @@ export const action_GET_getUserPermission_Cancel =
     await fetch(url, {
       method: "POST",
       headers: {
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -252,7 +260,11 @@ export const action_INSERT_notications =
 
 export const signalr_connection_notify = () => async (dispatch) => {
   const hubConnect = new signalR.HubConnectionBuilder()
-    .withUrl(`${process.env.REACT_APP_BASE_URL}notify`)
+    .withUrl(`${process.env.REACT_APP_BASE_URL}api/notif/notify`, {
+      skipNegotiation: true,
+      transport: signalR.HttpTransportType.WebSockets,
+    })
+
     .build();
   hubConnect.start();
   dispatch({ type: SIGNALR_CONNECT_NOTIFY, payload: hubConnect });
@@ -278,4 +290,44 @@ export const set_permissions = (approve, cancel) => async (dispatch) => {
     type: SET_PERMISSIONS,
     payload: { approve: approve, cancel: cancel },
   });
+};
+
+export const action_set_open_backdrop = (message,open) => async (dispatch) => {
+  dispatch({
+    type: SET_BACKDROP_OPEN,
+    payload: {message:message, openbackdrop: open },
+  });
+};
+
+const base64topdf = (base64url, fileName) => {
+  const pdfContentType = "application/pdf";
+  const link = document.createElement("a");
+  link.href = `data:${pdfContentType};base64,${base64url}`;
+  link.download = fileName;
+  link.click();
+};
+export const action_generate_report = (reqno) => async (dispatch) => {
+  var url = `${process.env.REACT_APP_BASE_URL}api/inventory/getPRPdf`;
+  await fetch(url, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      value: reqno,
+    }),
+  })
+    .then((response) => response.json())
+    .then((res) => {
+      if(res.success){
+        dispatch({
+          type: SET_BASE64TO_PDF,
+          payload: { base64topdf: res.data, openbackdrop: false },
+        });
+        base64topdf(res.data, reqno);
+      }
+      console.log(res)
+
+    });
 };

@@ -14,6 +14,8 @@ import {
   SET_USER_PERMISSION,
   SET_USER_PERMISSION_CANCEL,
   SET_PERMISSIONS,
+  SET_BASE64TO_PDF,
+  SET_BACKDROP_OPEN
 } from "../Types/Default_Types";
 import { SET_NEW_SUPPLIER } from "../Types/RFQ_types";
 
@@ -34,9 +36,15 @@ const defaults = {
   notificationlist: { data: [], loading: false },
   notificationlistbydept: { data: [], loading: false },
   permissions: { approve: false, cancel: false },
+  base64topdf: { base64: "" },
+  openbackdrop: { message:"",open: false },
 };
 const DefaultReducers = (data_state = defaults, actions) => {
   switch (actions.type) {
+    case SET_BACKDROP_OPEN:
+      return { ...data_state, openbackdrop: actions.payload };
+    case SET_BASE64TO_PDF:
+      return { ...data_state, base64topdf: actions.payload };
     case SET_GLOBAL_SNACKBAR:
       return { ...data_state, globalsnackbar: actions.payload };
     case SET_PERMISSIONS:

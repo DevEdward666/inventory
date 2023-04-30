@@ -27,7 +27,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import useSound from "use-sound";
-import ringtone from "../../Assets/ringtone/calling_you.mp3";
 import "../../Plugin/Modal/custommodalcss.css";
 import {
   action_GET_defaultlogo,
@@ -61,7 +60,7 @@ const Navigation = () => {
   const name = useSelector((state) => state.DefaultReducers.name);
   const logo = useSelector((state) => state.DefaultReducers.logo);
   const base_url = useSelector((state) => state.DefaultReducers.base_url);
-  const [play] = useSound(ringtone, { volume: 0.2 });
+
   const hubconnectnotify = useSelector(
     (state) => state.DefaultReducers.hubconnectnotify
   );
@@ -80,6 +79,16 @@ const Navigation = () => {
   const getpermissions_cancel = useSelector(
     (state) => state.DefaultReducers.user_permission_cancel
   );
+
+  var link = document.querySelector("link[rel~='icon']");
+  var title = document.querySelector("title[rel~='title']");
+if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    document.getElementsByTagName('head')[0].appendChild(link);
+}
+link.href=logo;
+
 
   const permissions = useSelector((state) => state.DefaultReducers.permissions);
   useEffect(() => {
@@ -149,7 +158,6 @@ const Navigation = () => {
     dispatch,
     hubconnectnotify,
     offset,
-    play,
     user_info?.deptcode,
   ]);
   const currenturl = window.location.href;

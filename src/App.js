@@ -12,16 +12,18 @@ import ManageNotification from "./Screens/Notification/ManageNotification";
 import "./../src/CustomStyles/PRSelectedInfo.css";
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 const theme = createMuiTheme({
   typography: {
     fontFamily:   'Cambria'
    
   },});
 function App() {
-  
+
   const LoginContainer = () => (
     <div>
       <Provider store={store}>
+        
         <Route path="/Login" component={Login} />
       </Provider>
     </div>
